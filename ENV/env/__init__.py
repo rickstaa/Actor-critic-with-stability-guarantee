@@ -16,7 +16,7 @@ try:
 
     # Initialize ros time
     import rospy
-    rospy.init_node("Actor-Critic-with-stability-guarantee")
+    rospy.init_node("actor_critic_with_stability_guarantee")
 
     # Re-register panda_openai_sim environments such that the parameters can be changed
     # Main task env (Contains all input arguments)

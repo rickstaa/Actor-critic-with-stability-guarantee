@@ -5,10 +5,10 @@ import ENV.env
 SEED = None
 
 VARIANT = {
-    "env_name": "PandaSlide-v0",
-    "env_name": "PandaPickAndPlace-v0",
+    # "env_name": "PandaSlide-v0",
+    # "env_name": "PandaPickAndPlace-v0",
     "env_name": "PandaReach-v0",
-    "env_name": "PandaPush-v0",
+    # "env_name": "PandaPush-v0",
     # 'env_name': 'FetchReach-v1',
     # 'env_name': 'Antcost-v0',
     # 'env_name': 'oscillator',
