@@ -1,8 +1,97 @@
 import logging
-from gym.envs.registration import register
+from gym.envs.registration import register, registry
 
 logger = logging.getLogger(__name__)
 
+# Register panda_openai_sim environments
+try:
+
+    # Import panda_openai_sim environments
+    from panda_openai_sim.envs.task_envs import (
+        PandaSlideEnv,
+        PandaPickAndPlaceEnv,
+        PandaReachEnv,
+        PandaPushEnv,
+    )
+
+    # Initialize ros time
+    import rospy
+    rospy.init_node("Actor-Critic-with-stability-guarantee")
+
+    # Re-register panda_openai_sim environments such that the parameters can be changed
+    # Main task env (Contains all input arguments)
+    env_id = "PandaTask-v0"
+    del registry.env_specs[env_id]
+    register(
+        id=env_id,
+        entry_point="panda_openai_sim.envs.task_envs:PandaTaskEnv",
+        # kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+    # Slide
+    env_id = "PandaSlide-v0"
+    del registry.env_specs[env_id]
+    register(
+        id=env_id,
+        entry_point="panda_openai_sim.envs.task_envs:PandaSlideEnv",
+        # kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+    # Pick and Place
+    env_id = "PandaPickAndPlace-v0"
+    del registry.env_specs[env_id]
+    register(
+        id=env_id,
+        entry_point="panda_openai_sim.envs.task_envs:PandaPickAndPlaceEnv",
+        # kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+    # Reach
+    env_id = "PandaReach-v0"
+    del registry.env_specs[env_id]
+    register(
+        id=env_id,
+        entry_point="panda_openai_sim.envs.task_envs:PandaReachEnv",
+        # kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+    # Push
+    env_id = "PandaPush-v0"
+    del registry.env_specs[env_id]
+    register(
+        id=env_id,
+        entry_point="panda_openai_sim.envs.task_envs:PandaPushEnv",
+        # kwargs=kwargs,
+        max_episode_steps=50,
+    )
+except ImportError as e:
+
+    # Check what went wrong and print log message
+    if "dynamic module" in e.args[0].lower():
+        print(
+            "The 'panda_openai_sim' environments could not be registered. It appears "
+            "that you did not build/source the required ROS for python 3. Please build "
+            "and build these packages if you want to use the 'panda_openai_sim' "
+            "environments."
+        )
+    elif "no module named 'rospy'" in e.args[0].lower():
+        print(
+            "The 'panda_openai_sim' environments could not be registered. It appears "
+            "that you did not install/source the ROS. Please install/source ROS if you "
+            "want to use the 'panda_openai_sim' environments."
+        )
+    else:
+        print(
+            "The 'panda_openai_sim' environments could not be registered. Please make "
+            "sure you sourced the catkin_ws if you want to use the 'panda_openai_sim' "
+            "environments."
+        )
+
+# Register Atari environments
 # # print ', '.join(["'{}'".format(name.split('.')[0]) for name in atari_py.list_games()])
 for game in ['pong']:
     for obs_type in ['image', 'ram']:
@@ -26,7 +115,7 @@ for game in ['pong']:
             nondeterministic=nondeterministic,
         )
 
-#classic
+# Register classic environments
 register(
     id='CartPolecons-v0',
     entry_point='ENV.env.classic_control:CartPoleEnv_cons',
@@ -44,8 +133,8 @@ register(
     entry_point='ENV.env.classic_control:CarEnv',
     max_episode_steps=600,
 )
-# mujoco
 
+# Register mujoco environments
 register(
     id='HalfCheetahcons-v0',
     entry_point='ENV.env.mujoco:HalfCheetahEnv_lya',
@@ -82,6 +171,3 @@ register(
     entry_point='ENV.env.mujoco:QuadrotorEnv',
     max_episode_steps=512,
 )
-
-
-

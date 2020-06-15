@@ -464,6 +464,3 @@ def train(variant):
 
     print('Running time: ', time.time() - t1)
     return
-
-
-

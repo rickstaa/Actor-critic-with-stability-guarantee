@@ -5,11 +5,15 @@ import ENV.env
 SEED = None
 
 VARIANT = {
+    "env_name": "PandaSlide-v0",
+    "env_name": "PandaPickAndPlace-v0",
+    "env_name": "PandaReach-v0",
+    "env_name": "PandaPush-v0",
     # 'env_name': 'FetchReach-v1',
     # 'env_name': 'Antcost-v0',
     # 'env_name': 'oscillator',
     # 'env_name': 'MJS1',
-    'env_name': 'minitaur',
+    # 'env_name': 'minitaur',
     # 'env_name': 'swimmer',
     # 'env_name': 'racecar',
     # 'env_name': 'MJS2',
@@ -17,8 +21,8 @@ VARIANT = {
     # 'env_name': 'HalfCheetahcost-v0',
     # 'env_name': 'cartpole_cost',
     #training prams
-    'algorithm_name': 'LAC',
-    # 'algorithm_name': 'SAC_cost',
+    # 'algorithm_name': 'LAC',
+    'algorithm_name': 'SAC_cost',
     # 'algorithm_name': 'SPPO',
     # 'algorithm_name': 'DDPG',
     # 'algorithm_name': 'CPO',
@@ -224,6 +228,55 @@ ENV_PARAMS = {
             {'critic': [64, 64, 16],
              'actor': [64, 64],
              },
+    },
+    # Panda environment parameters
+    "PandaSlide-v0": {
+        "max_ep_steps": 200,
+        "max_global_steps": int(3e5),
+        "max_episodes": int(1e6),
+        "reward_type": "sparse", # Sparse or dense
+        "disturbance dim": 4,
+        "eval_render": False,
+        "network_structure": {
+            "critic": [64, 64, 16],
+            "actor": [64, 64],
+        },
+    },
+    "PandaPickAndPlace-v0": {
+        "max_ep_steps": 200,
+        "max_global_steps": int(3e5),
+        "max_episodes": int(1e6),
+        "reward_type": "sparse",  # Sparse or dense
+        "disturbance dim": 4,
+        "eval_render": False,
+        "network_structure": {
+            "critic": [64, 64, 16],
+            "actor": [64, 64],
+        },
+    },
+    "PandaReach-v0": {
+        "max_ep_steps": 200,
+        "max_global_steps": int(3e5),
+        "max_episodes": int(1e6),
+        "reward_type": "sparse",  # Sparse or dense
+        "disturbance dim": 4,
+        "eval_render": False,
+        "network_structure": {
+            "critic": [64, 64, 16],
+            "actor": [64, 64],
+        },
+    },
+    "PandaPush-v0": {
+        "max_ep_steps": 200,
+        "max_global_steps": int(3e5),
+        "max_episodes": int(1e6),
+        "reward_type": "sparse",  # Sparse or dense
+        "disturbance dim": 4,
+        "eval_render": False,
+        "network_structure": {
+            "critic": [64, 64, 16],
+            "actor": [64, 64],
+        },
     },
 }
 ALG_PARAMS = {
@@ -481,6 +534,24 @@ def get_env_from_name(name):
                 env.modify_action_scale = False
         if 'Fetch' in name or 'Hand' in name:
             env.unwrapped.reward_type = 'dense'
+
+        # Set Panda environment parameters
+        if "Panda" in name:
+
+            # Wrap panda_environment
+            # NOTE: As the the panda_openai_sim environments are GoalGym environments
+            # where we only accept normal gym environments need to wrap the goal-based
+            # environment using FlattenDictWrapper. This will convert the observations
+            # dictionary from a dict to a flat list.
+            env = gym.wrappers.FlattenObservation(env)
+
+            # Set reward type
+            if 'reward_type' in VARIANT['env_params'].keys():
+                if VARIANT['env_params']['reward_type'].lower() in ['sparse', 'dense']:
+                    env.unwrapped.reward_type = VARIANT["env_params"][
+                        "reward_type"
+                    ].lower()
+
     env.seed(SEED)
     return env
 
@@ -524,5 +595,3 @@ def get_eval(name):
         from LAC.LAC_V1 import eval
 
     return eval
-
-

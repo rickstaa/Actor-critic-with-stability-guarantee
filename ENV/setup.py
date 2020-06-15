@@ -16,3 +16,10 @@ setup(name='atari',
       install_requires=['gym>=0.2.3']
 )
 
+setup(name='panda_openai_sim',
+      version='0.0.0',
+      install_requires=[
+            'rospkg',
+            'netifaces',
+      ]
+)

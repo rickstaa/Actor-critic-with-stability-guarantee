@@ -792,4 +792,3 @@ if __name__ == '__main__':
         else:
             instant_impulse(VARIANT)
         tf.reset_default_graph()
-

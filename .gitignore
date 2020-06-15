@@ -1,0 +1,7 @@
+# Folders we want to ignore
+__pychache__
+.egg-info
+.vscode
+
+# Files we want to ignore
+*.pyc

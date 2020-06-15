@@ -1,6 +1,6 @@
 import tensorflow as tf
 import os
-from variant import VARIANT, get_env_from_name,  get_train, get_eval
+from variant import VARIANT, get_env_from_name, get_train, get_eval
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
@@ -18,4 +18,3 @@ if __name__ == '__main__':
     else:
         eval = get_eval(VARIANT['algorithm_name'])
         eval(VARIANT)
-

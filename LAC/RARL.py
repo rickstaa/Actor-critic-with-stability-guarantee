@@ -567,5 +567,3 @@ def train(variant):
     disturber.save_result(log_path)
     print('Running time: ', time.time() - t1)
     return
-
-
