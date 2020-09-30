@@ -1,0 +1,6 @@
+# Folders to ignore
+.vscode/
+__pycache__/
+
+# Files to ignore
+*.code-workspace

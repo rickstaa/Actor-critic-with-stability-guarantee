@@ -1,0 +1,9 @@
+tensorflow==1.15.0
+tensorboard==1.15.0
+tensorflow-probability==0.8.0
+opencv-python
+matplotlib
+gym==0.12.0
+cloudpickle==1.1.1
+numpy
+packaging
