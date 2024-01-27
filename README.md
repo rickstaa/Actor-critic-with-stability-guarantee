@@ -1,5 +1,8 @@
 # Actor-critic-with-stability-guarantee
 
+> [!IMPORTANT]\
+> You're currently viewing the `master` branch of my [Actor-critic-with-stability-guarantee](https://github.com/rickstaa/Actor-critic-with-stability-guarantee) fork. If you're interested in my Master's thesis, [Stability guarantees for learning-based effort control in rigid robotics manipulators](https://github.com/rickstaa/thesis-stable-manipulator-effort-control), please navigate to the [rstaa2024](https://github.com/rickstaa/Actor-critic-with-stability-guarantee/tree/rstaa2024) branch.
+
 ## Conda environment
 From the general python package sanity perspective, it is a good idea to use conda environments to make sure packages from different projects do not interfere with each other.
 
@@ -27,4 +30,3 @@ pip install matplotlib
 ```
 
 Then you are free to run main.py to train agents. Hyperparameters for training LAC in Cartpole are ready to run by default. If you would like to test other environments and algorithms, please open variant.py and choose corresponding 'env_name' and 'algorithm_name'.
-
