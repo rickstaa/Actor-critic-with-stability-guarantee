@@ -1,5 +1,8 @@
 # Actor-Critic Reinforcement Learning with Stability Guarantee
 
+> [!WARNING]\
+> You are currently viewing the `rstaa2024` branch of the [Actor-critic-with-stability-guarantee](https://github.com/hithmh/Actor-critic-with-stability-guarantee) repository. This branch contains modifications made during the replication process for my Master's thesis into [Stability guarantees for learning-based effort control in rigid robotics manipulators](https://github.com/rickstaa/thesis-stable-manipulator-effort-control). To access the original codebase from the paper's authors, please switch to the `master` branch of the [Actor-critic-with-stability-guarantee](https://github.com/hithmh/Actor-critic-with-stability-guarantee) repository.
+
 Welcome to the official repository for the research paper, [Actor-Critic Reinforcement Learning for Control with Stability Guarantee](https://arxiv.org/abs/2004.14288) by Han et al., 2020. This repository contains the complete codebase and detailed instructions for replicating the research experiments. It also includes a Dockerfile to facilitate easy setup and consistent environment configuration.
 
 ## Getting Started

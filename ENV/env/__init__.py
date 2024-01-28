@@ -82,6 +82,3 @@ register(
     entry_point='ENV.env.mujoco:QuadrotorEnv',
     max_episode_steps=512,
 )
-
-
-
