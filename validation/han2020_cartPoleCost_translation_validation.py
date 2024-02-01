@@ -88,8 +88,10 @@ if __name__ == "__main__":
         ]
     )
     for i in range(STEPS):
-        delta = (2.0 / STEPS) * i
-        action = np.array([-20 + delta], dtype=np.float32)
+        delta = (
+            (env_cost.action_space.high - env_cost.action_space.low)[0] / STEPS
+        ) * i
+        action = np.array([env_cost.action_space.low[0] + delta], dtype=np.float32)
         observation, reward, done, info = env_cost.step(action)
 
         # Store the results in a table and dataframe.

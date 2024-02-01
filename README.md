@@ -34,7 +34,7 @@ This repository provides a Dockerfile to create the required experimental enviro
    docker build -t your_image_name .
    ```
 
-> [!NOTE]
+> [!NOTE]\
 > Replace `your_image_name` with a preferred name for your Docker image.
 
 ### Running Experiments Using Docker
@@ -53,9 +53,12 @@ For those who prefer an integrated development environment, particularly for alt
 -v ./variant.py:/han_et_al_2020/variant.py -v ./my_plotter.py:/han_et_al_2020/my_plotter.py
 ```
 
+> [!NOTE]\
+> On some systems, you may need to run `xhost +local:docker` before running the Docker image. This command allows the Docker container to connect to your machine's X server, enabling graphical output. To revoke this access, run `xhost -local:docker`.
+
 ### Setting Up a Local Environment
 
-> [!WARNING]
+> [!WARNING]\
 > The steps below detail setting up a local environment. However, to ensure consistency and reproducibility, using the Dockerfile (as detailed in [Building the Docker Image](#building-the-docker-image)) is recommended.
 
 #### Dependencies
@@ -111,7 +114,7 @@ conda activate han2020
    python main.py
    ```
 
-> [!IMPORTANT]
+> [!IMPORTANT]\
 > For Mujoco environments, ensure Mujoco 2.0 is installed and set `LD_LIBRARY_PATH` to its `bin` directory. Consult the [Mujoco documentation](https://www.roboti.us/download.html) for detailed instructions.
 
 ### Running Robustness Experiments
