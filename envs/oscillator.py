@@ -31,10 +31,13 @@ class oscillator(gym.Env):
         self.t = 0
         self.sigma = 0.
         # Angle limit set to 2 * theta_threshold_radians so failing observation is still within bounds
-        high = np.array([1, 1, 1, 1, 1, 1, 1, 1])
+        # high = np.array([1, 1, 1, 1, 1, 1, 1, 1]) 
+        # NOTE: Adjusted observation space to match the range in Han et al. 2020 for accurate reproduction of their plots.
+        low = np.array([0., 0., 0., 0., 0., 0., 0., -np.inf])
+        high = np.array([np.inf, np.inf, np.inf, np.inf, np.inf, np.inf, np.inf, np.inf])
 
         self.action_space = spaces.Box(low=np.array([0., 0.,0.]), high=np.array([1, 1, 1]), dtype=np.float32)
-        self.observation_space = spaces.Box(-high, high, dtype=np.float32)
+        self.observation_space = spaces.Box(low, high, dtype=np.float32)
 
         self.seed()
         self.viewer = None
@@ -155,7 +158,3 @@ if __name__=='__main__':
     ax.legend(handles, labels, loc=2, fancybox=False, shadow=False)
     plt.show()
     print('done')
-
-
-
-
