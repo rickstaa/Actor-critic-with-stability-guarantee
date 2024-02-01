@@ -5,12 +5,3 @@ pytest-coverage.txt
 # IDE
 .vscode
 *.code-workspace
-
-# Validation files
-cartPoleCost_translation_validation.csv
-fetchReach_translation_validation.csv
-halfCheetahCost_translation_validation.csv
-minitaurCost_translation_validation.csv
-oscillatorCost_translation_validation.csv
-oscillatorCostComp_translation_validation.csv
-swimmerCost_translation_validation.csv
