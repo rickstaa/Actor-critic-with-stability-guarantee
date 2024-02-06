@@ -97,5 +97,3 @@ class Pool(object):
                 else:
                     batch.update({key: self.memory[key][indices]})
             return batch
-
-

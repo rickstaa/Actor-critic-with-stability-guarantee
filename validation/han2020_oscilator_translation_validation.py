@@ -46,7 +46,6 @@ if __name__ == "__main__":
     # numpy and gym versions.
     env_cost = Oscillator()
     env_cost.seed(SEED)
-    env_cost = env_cost.unwrapped
     env_cost.reset()
     env_cost.unwrapped.state = np.array(
         [3.1848085, 1.3489336, 0.20486762, 0.08263817, 4.0663514, 4.563778],

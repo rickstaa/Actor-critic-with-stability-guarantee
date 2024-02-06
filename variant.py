@@ -5,7 +5,7 @@ import ENV.env
 SEED = None
 
 VARIANT = {
-    'env_name': 'swimmer',
+    # 'env_name': 'swimmer',
     # 'env_name': 'FetchReach-v1',
     # 'env_name': 'Antcost-v0',
     # 'env_name': 'oscillator',
@@ -15,7 +15,7 @@ VARIANT = {
     # 'env_name': 'MJS2',
     # 'env_name': 'oscillator_complicated',
     # 'env_name': 'HalfCheetahcost-v0',
-    # 'env_name': 'cartpole_cost',
+    'env_name': 'cartpole_cost',
 
     # Training params
     'algorithm_name': 'LAC',
@@ -99,7 +99,7 @@ ENV_PARAMS = {
         'eval_render': False,
         'network_structure':
             {'critic': [64, 64, 16],
-             'actor': [64,64],
+             'actor': [256, 256],  # NOTE: Adjusted from [64, 64] to match the paper's specifications.
              },
     },
     'swimmer': {
@@ -243,7 +243,7 @@ ALG_PARAMS = {
         'memory_capacity': int(1e6),
         'min_memory_size': 1000,
         'batch_size': 256,
-        'labda': 1.,
+        'labda': 0.99,  # NOTE: Changed to 0.99 from 1.0 for numerical stability.
         'alpha': 2.,
         'alpha3': .1,
         'tau': 5e-3,
@@ -257,9 +257,11 @@ ALG_PARAMS = {
         'use_lyapunov': True,
         'adaptive_alpha': True,
         'approx_value': True,
-        'value_horizon': 2,
-        # 'finite_horizon': True,
-        'finite_horizon': False,
+        # NOTE: Uncomment for finite horizon.
+        'value_horizon': 5,  # NOTE: Adjusted from 2 to match the paper's specifications.
+        'finite_horizon': True,
+        # NOTE: Uncomment for infinite horizon.
+        # 'finite_horizon': False,
         'soft_predict_horizon': False,
         'target_entropy': None,
         'history_horizon': 0,  # 0 is using current state only

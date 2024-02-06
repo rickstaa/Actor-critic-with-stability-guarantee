@@ -46,7 +46,6 @@ if __name__ == "__main__":
     # numpy and gym versions.
     env_cost = CartPoleCost()
     env_cost.seed(SEED)
-    env_cost = env_cost.unwrapped
     env_cost.reset()
     env_cost.unwrapped.state = np.array(
         [
