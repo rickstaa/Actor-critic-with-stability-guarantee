@@ -6,7 +6,7 @@ SEED = None
 
 VARIANT = {
     # 'env_name': 'swimmer',
-    # 'env_name': 'FetchReach-v1',
+    'env_name': 'FetchReach-v1',
     # 'env_name': 'Antcost-v0',
     # 'env_name': 'oscillator',
     # 'env_name': 'MJS1',
@@ -15,7 +15,7 @@ VARIANT = {
     # 'env_name': 'MJS2',
     # 'env_name': 'oscillator_complicated',
     # 'env_name': 'HalfCheetahcost-v0',
-    'env_name': 'cartpole_cost',
+    # 'env_name': 'cartpole_cost',
 
     # Training params
     'algorithm_name': 'LAC',
@@ -224,7 +224,7 @@ ENV_PARAMS = {
         'eval_render': False,
         'network_structure':
             {'critic': [64, 64, 16],
-             'actor': [64, 64],
+             'actor': [256, 256],  # NOTE: Adjusted from [64, 64] to match the paper's specifications.
              },
     },
 }
