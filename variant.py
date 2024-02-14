@@ -121,7 +121,7 @@ ENV_PARAMS = {
         'eval_render': False,
         'network_structure':
             {'critic': [256, 256, 16],
-             'actor': [64, 64],
+             'actor': [256, 256],  # NOTE: Adjusted from [64, 64] to match the paper's specifications.
              },
     },
     'MJS1': {
@@ -169,7 +169,7 @@ ENV_PARAMS = {
         #      },
         'network_structure':
             {'critic': [256, 256, 16],
-             'actor': [64,64],
+             'actor': [64,64], 
              },
     },
     'oscillator_complicated': {
@@ -179,8 +179,8 @@ ENV_PARAMS = {
         'disturbance dim': 2,
         'eval_render': False,
         'network_structure':
-            {'critic': [64, 64, 16],
-             'actor': [64, 64],
+            {'critic': [256, 256, 16],  # NOTE: Adjusted from [64, 64, 16] to match the paper's specifications.
+             'actor': [256, 256],  # NOTE: Adjusted from [64, 64] to match the paper's specifications.
              },
     },
     'HalfCheetahcost-v0': {
