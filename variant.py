@@ -174,7 +174,7 @@ ENV_PARAMS = {
     },
     'oscillator_complicated': {
         'max_ep_steps': 400,
-        'max_global_steps': int(1e5),
+        'max_global_steps': int(2e5),  # NOTE: Adjusted from int(1e5) to match the paper's specifications.
         'max_episodes': int(2e5),
         'disturbance dim': 2,
         'eval_render': False,
