@@ -1,15 +1,17 @@
 # Use the official Miniconda3 base image
-FROM continuumio/miniconda3:latest
+FROM continuumio/miniconda3:4.9.2
 
 # Set environment variables for Conda
 ENV CONDA_HOME="/opt/conda"
 ENV PATH="$CONDA_HOME/bin:$PATH"
+ENV LD_LIBRARY_PATH="/root/.mujoco/mujoco200/bin"
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt-get update --allow-releaseinfo-change && apt-get install -y \
     unzip \
     build-essential \
     libosmesa6-dev \
+    libgl1-mesa-dev \
     patchelf \
     && rm -rf /var/lib/apt/lists/*
 
@@ -38,7 +40,9 @@ RUN wget https://www.roboti.us/file/mjkey.txt -O /root/.mujoco/mjkey.txt
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/root/.mujoco/mujoco200/bin
 
 # Install dependencies
-RUN pip install numpy==1.16.3 \
+RUN pip install \
+    numpy==1.16.3 \
+    cffi==1.15.1 \
     cython==0.29.7 \
     tensorflow==1.13.1 \
     tensorflow-probability==0.6.0 \
@@ -47,11 +51,16 @@ RUN pip install numpy==1.16.3 \
     gym==0.12.1 \
     matplotlib==3.1.3 \
     pybullet==2.4.9 \
-    mujoco-py==2.0.2.5 \
-    pandas==0.24.2
+    pandas==0.24.2 \
+    lockfile==0.12.2
+
+# Install MuJoCo-py
+RUN pip install \
+    mujoco-py==2.0.2.5
 
 # Add Conda activation to .bashrc
 RUN echo "source activate han2020" >> /root/.bashrc
+RUN echo "export LD_LIBRARY_PATH=/root/.mujoco/mujoco200/bin:$LD_LIBRARY_PATH" >> /root/.bashrc
 
 # Start the experiments
 ENTRYPOINT [ "conda", "run", "--no-capture-output", "-n", "han2020"]

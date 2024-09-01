@@ -71,7 +71,7 @@ For those who prefer an integrated development environment, particularly for alt
 1. Install required system packages:
 
    ```bash
-   sudo apt update && sudo apt install build-essential libosmesa6-dev patchelf
+   sudo apt update && sudo apt install build-essential libosmesa6-dev libgl1-mesa-dev patchelf
    ```
 
 2. Clone this repository:
@@ -80,7 +80,13 @@ For those who prefer an integrated development environment, particularly for alt
    git clone https://github.com/hithmh/Actor-critic-with-stability-guarantee
    ```
 
-3. Install Python dependencies:
+3. **Optional**: If on Ubuntu 24.04 ensure that the `libstdc++6` library is installed:
+
+   ```bash
+   conda install -c conda-forge libstdcxx-ng
+   ```
+
+4. Install Python dependencies:
 
    ```bash
    pip install -r requirements/requirements.txt
